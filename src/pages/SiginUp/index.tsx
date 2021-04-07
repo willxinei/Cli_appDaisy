@@ -34,24 +34,22 @@ const SignUp: React.FC = () => {
    const handleSignUp = useCallback(
       async (data: SignUpFormData) => {
          try {
-            // formRef.current?.setErrors({});
+            formRef.current?.setErrors({});
 
-            // const schema = Yup.object().shape({
-            //    name: Yup.string().required('nome obrigatório'),
-            //    email: Yup.string()
-            //       .required('E-mail obrigatório')
-            //       .email('Digite um e-mail valido'),
-            //    telefone: Yup.number()
-            //       .required('Telefone obrigatório')
-            //       .min(11)
-            //       .max(11),
-            //    provider: Yup.boolean(),
-            //    password: Yup.string().required('senha obrigátoria').min(6),
-            // });
+            const schema = Yup.object().shape({
+               name: Yup.string().required('nome obrigatório'),
+               email: Yup.string()
+                  .required('E-mail obrigatório')
+                  .email('Digite um e-mail valido'),
+               telefone: Yup.number().required('Telefone obrigatório').min(11),
 
-            // await schema.validate(data, {
-            //    abortEarly: false,
-            // });
+               provider: Yup.boolean(),
+               password: Yup.string().required('senha obrigátoria').min(6),
+            });
+
+            await schema.validate(data, {
+               abortEarly: false,
+            });
 
             await api.post('/user', {
                name: data.name,

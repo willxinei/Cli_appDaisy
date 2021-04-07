@@ -60,7 +60,7 @@ const Input: React.FC<InpuProps> = ({name, icon, ...rest}) => {
    }, [registerField, fieldName]);
 
    return (
-      <Container isFocused={isFocused}>
+      <Container isErrored={!!error} isFocused={isFocused}>
          <Icon
             color={isFocused || isFiled ? '#22B18A' : '#d0d0d0'}
             name={icon}
